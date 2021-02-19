@@ -1,0 +1,217 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:layout_margin="16dp">
+
+        <!--头部文本内容-->
+        <TextView
+            android:id="@+id/text_title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="手机号登录"
+            android:textSize="30sp"
+            android:textStyle="bold"/>
+
+        <!--动态加载碎片输入框-->
+<!--        <FrameLayout-->
+<!--            android:id="@+id/show_content"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"/>-->
+
+        <!--下一步-->
+        <LinearLayout
+            android:id="@+id/layout_next"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <!--表格布局，手机号输入-->
+            <TableLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="50dp"
+                android:stretchColumns="1">
+
+                <!--第一行-->
+                <TableRow
+                    android:layout_marginBottom="20dp">
+                    <TextView
+                        android:layout_width="110dp"
+                        android:layout_height="wrap_content"
+                        android:text="国家/地区"
+                        android:textSize="20sp"/>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="中国大陆（+86）"
+                        android:textSize="20sp"
+                        android:textColor="#4CAF50"/>
+                </TableRow>
+                <!--第二行-->
+                <TableRow
+                    android:layout_marginBottom="20dp">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="手机号"
+                        android:textSize="20sp"/>
+
+                    <EditText
+                        android:id="@+id/edit_phone"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        />
+                </TableRow>
+            </TableLayout>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="用微信号/QQ号/邮箱登录"
+                android:textSize="20sp"
+                android:textColor="@color/blueLink"/>
+
+            <Button
+                android:id="@+id/btn_next"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="下一步"
+                android:onClick="clickNext"
+                android:layout_marginTop="50dp"
+                android:textColor="#fff"
+                android:textSize="20sp"
+                android:background="#4CAF50"/>
+        </LinearLayout>
+
+        <!--登录-->
+        <LinearLayout
+            android:id="@+id/layout_login"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:visibility="gone">
+
+            <!--表格布局，验证码输入-->
+            <TableLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="50dp"
+                android:stretchColumns="1">
+
+                <!--第二行-->
+                <TableRow
+                    android:layout_marginBottom="20dp">
+                    <TextView
+                        android:layout_width="110dp"
+                        android:layout_height="wrap_content"
+                        android:text="手机号"
+                        android:textSize="20sp"/>
+
+                    <TextView
+                        android:id="@+id/edit_get_phone"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="+86"
+                        android:textSize="20sp"/>
+                </TableRow>
+
+                <TableRow
+                    android:layout_marginBottom="20dp">
+                    <TextView
+                        android:layout_width="110dp"
+                        android:layout_height="wrap_content"
+                        android:text="验证码"
+                        android:textSize="20sp"/>
+
+                    <EditText
+                        android:id="@+id/edit_code"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"/>
+
+                    <Button
+                        android:id="@+id/btn_get_code"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="获取验证码"
+                        android:onClick="getCode"
+                        android:textColor="#4CAF50"
+                        android:textSize="18sp"/>
+                </TableRow>
+            </TableLayout>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="用密码登录"
+                android:textSize="20sp"
+                android:textColor="@color/blueLink"/>
+
+            <Button
+                android:id="@+id/btn_login"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="登录"
+                android:onClick="login"
+                android:layout_marginTop="50dp"
+                android:textColor="#fff"
+                android:textSize="20sp"
+                android:background="#4CAF50"/>
+        </LinearLayout>
+
+        <!--相对布局，底部-->
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <!--线性布局-->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_alignParentBottom="true"
+                android:gravity="center_horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="找回密码"
+                    android:textSize="18sp"
+                    android:textColor="@color/blueLink"
+                    android:gravity="center"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text=" | "
+                    android:textSize="18sp"
+                    android:textColor="#B6B6B6"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="紧急冻结"
+                    android:textSize="18sp"
+                    android:textColor="@color/blueLink"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text=" | "
+                    android:textSize="18sp"
+                    android:textColor="#B6B6B6"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="微信安全中心"
+                    android:textSize="18sp"
+                    android:textColor="@color/blueLink"
+                    android:gravity="center"/>
+            </LinearLayout>
+        </RelativeLayout>
+    </LinearLayout>
+</LinearLayout>

@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    tools:context=".fragment.NextFragment">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <!--表格布局，手机号输入-->
+        <TableLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="50dp"
+            android:stretchColumns="1">
+
+            <!--第一行-->
+            <TableRow
+                android:layout_marginBottom="20dp">
+                <TextView
+                    android:layout_width="110dp"
+                    android:layout_height="wrap_content"
+                    android:text="国家/地区"
+                    android:textSize="20sp"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="中国大陆（+86）"
+                    android:textSize="20sp"
+                    android:textColor="#4CAF50"/>
+            </TableRow>
+            <!--第二行-->
+            <TableRow
+                android:layout_marginBottom="20dp">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="手机号"
+                    android:textSize="20sp"/>
+
+                <EditText
+                    android:id="@+id/edit_phone"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    />
+            </TableRow>
+        </TableLayout>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="用微信号/QQ号/邮箱登录"
+            android:textSize="20sp"
+            android:textColor="@color/blueLink"/>
+
+        <Button
+            android:id="@+id/btn_next"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="下一步"
+            android:onClick="clickNext"
+            android:layout_marginTop="50dp"
+            android:textColor="#fff"
+            android:textSize="20sp"
+            android:background="#4CAF50"/>
+    </LinearLayout>
+</FrameLayout>
