@@ -3,6 +3,8 @@ package com.weiyh.loginview;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.os.CountDownTimer;
+import android.os.Handler;
+import android.os.Message;
 import android.text.Editable;
 import android.text.TextUtils;
 import android.util.Log;
@@ -13,10 +15,13 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
+
+import java.util.concurrent.atomic.AtomicInteger;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -31,6 +36,7 @@ public class MainActivity extends AppCompatActivity {
     private Button btnGetCode;
     private LinearLayout layoutNext;
     private LinearLayout layoutLogin;
+    private Handler handler;
 
     private Fragment nextFragment;
     private Fragment loginFragment;
@@ -55,6 +61,23 @@ public class MainActivity extends AppCompatActivity {
         layoutNext = findViewById(R.id.layout_next);
         layoutLogin = findViewById(R.id.layout_login);
         btnGetCode = findViewById(R.id.btn_get_code);
+
+        handler = new Handler() {
+            @Override
+            public void handleMessage(@NonNull Message msg) {
+                super.handleMessage(msg);
+                if (msg.obj == null) {
+                    // 获取秒数
+                    Log.d("====>", msg.what + "");
+                    btnGetCode.setText(msg.what + "秒后重试");
+                } else {
+                    // 已完成
+                    Log.d("====>obj", msg.obj.toString());
+                    btnGetCode.setText("重新获取");
+                    btnGetCode.setClickable(true);
+                }
+            }
+        };
     }
 
     /**
@@ -84,10 +107,11 @@ public class MainActivity extends AppCompatActivity {
     }
 
     /**
+     * 方法1：timer
      * 点击获取验证码
      * @param view
      */
-    public void getCode(View view) {
+    /*public void getCode1(View view) {
         btnGetCode.setBackgroundColor(Color.argb(0, 0, 0, 0));
         btnGetCode.setTextColor(Color.GRAY);
         btnGetCode.setClickable(false);
@@ -106,6 +130,40 @@ public class MainActivity extends AppCompatActivity {
             }
         }.start();
         // timer.onFinish();
+    }*/
+
+    /**
+     * 方法2：handler
+     * 点击获取验证码
+     * @param view
+     */
+    public void getCode(View view) {
+        btnGetCode.setBackgroundColor(Color.argb(0, 0, 0, 0));
+        btnGetCode.setTextColor(Color.GRAY);
+        btnGetCode.setClickable(false);
+        // 原子类型的Integer，在多线程情况可以避免重排序
+        final AtomicInteger time = new AtomicInteger(60);
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                while(time.intValue() >= 0) {
+                    try {
+                        // 通过handler发送当前计时
+                        handler.sendEmptyMessage(time.intValue());
+                        Thread.sleep(1000);
+                        // 每隔1秒进行time--
+                        time.decrementAndGet();
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+                }
+
+                // 计时结束
+                Message msg = handler.obtainMessage();
+                msg.obj = "重新获取";
+                handler.sendMessage(msg);
+            }
+        }).start();
     }
 
     /**

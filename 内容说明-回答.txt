@@ -1,0 +1,41 @@
+Android部分：
+1,   Activity是什么
+	是一种包含用户界面的组件，主要用于与用户进行交互，一个应用程序通常由一个或多个活动组成。	
+
+2，LinearLayout/RelativeLayout/FrameLayout的区别
+	I：LinearLayout（线性布局）：
+	II：RelativeLayout（相对布局）：
+	III：FrameLayout（帧布局）：
+	IV：除此之外还有：TableLayout（表格布局）、AbsoluteLayout（绝对布局）、新增的GridLayout（网格布局）、
+	基于帧布局和相对布局扩展的百分比布局：PercentFrameLayout和PercentLinearLayout、ContraintLayout（约束布局）。
+
+3，常用控件有那些
+	TextView（文本）、Button（按钮）、EditText（文本输入）、ImageView（图片）、CheckBox（复选框）、
+	RadioButton（单选框）、Switch（开关）、AlertDialog（弹出框）、ProgressBar（进度条）、ProgressDialog（弹出加载）。
+
+4，代码实现附件UI,界面1，界面2，界面3，
+界面1点击下一步跳转到界面2，
+界面2中点击获取验证码后实现60s倒计时，
+无需获取真正的验证码，然后点登录，finish当前activity
+5，Handler是什么
+	Handler是SDK中处理异步消息的核心类。主要接受子线程发送的数据，并通过此数据配合主线程更新UI。
+	作用：完成线程间的的通信，即主线程和子线程之间、子线程和子线程之间。
+    参考链接：https://blog.csdn.net/qq_38845493/article/details/80609509
+6，线程的基本使用
+7，Handler+子线程实现60s倒计时功能
+8，自定义View是什么，分类有哪些，会写简单的自定义View
+
+Camera部分：
+1,常用API学习：
+CameraManager,CameraDevice，
+CameraCharacteristics，CameraCaptureSession，
+CaptureRequest，CaptureResult，ImageReader，MediaRecorder
+2,google camera官方demo学习，见附件代码
+拍照demo:
+android-Camera2Basic
+android-Camera2Video
+
+备注：
+需写学习笔记，
+入职后会检查基本学习情况，
+后面实战项目入职后会讲如何实现
